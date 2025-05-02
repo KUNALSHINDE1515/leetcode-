@@ -12,8 +12,13 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
+app.get("/", (req, res) => {
+  res.send("Hello World! This is the backend of the project.");
+});
+
 
 app.use("/api/v1/auth", authRouters);
+
 app.listen(process.env.PORT, () => {
   console.log(`Server is listening on port:${process.env.PORT}`);
 });
