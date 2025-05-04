@@ -34,7 +34,7 @@ export const register = async (req, res) => {
             expiresIn: '7d'
         });
 
-        res.cookie('token', token, {
+        res.cookie('jwt', token, {
             httpOnly: true,
             sameSite: "strict",
             secure: process.env.NODE_ENV !== 'development',
@@ -42,6 +42,7 @@ export const register = async (req, res) => {
         });
 
         res.status(201).json({
+            success: true,
             message: 'User created successfully',
             user:{
                 id:newUser.id,
@@ -84,7 +85,7 @@ export const login = async (req, res) => {
         const token = jwt.sign({id:user.id}, process.env.JWT_SECRET, {
             expiresIn: '7d'
         });
-        res.cookie('token', token, {
+        res.cookie('jwt', token, {
             httpOnly: true,
             sameSite: "strict",
             secure: process.env.NODE_ENV !== 'development',
@@ -92,6 +93,7 @@ export const login = async (req, res) => {
         });
 
         res.status(200).json({
+            success: true  ,
             message: 'User Logged in successfully',
             user:{
                 id:user.id,
@@ -116,7 +118,8 @@ export const logout = async (req, res) => {
             sameSite: "strict",
             secure: process.env.NODE_ENV !== 'development',
         });
-        res.status(204).json({
+        res.status(200).json({
+            success: true,
             message: 'User logged out successfully'
         })  
     } catch (error) {
@@ -126,4 +129,17 @@ export const logout = async (req, res) => {
         })
     }
 }
-export const check = async (req, res) => {}
+export const check = async (req, res) => {
+    try {
+        res.status(200).json({
+            success: true,
+            message: "User authenticated successfully",
+            user: req.user
+        });
+    } catch (error) {
+        console.error("error checking user :",error);
+        res.status(500).json({
+            error:"Error checking user"
+        })
+    }
+}
