@@ -1,4 +1,4 @@
-import {db} from "../libs/db.js";
+import db from "../libs/db.js";
 import { pollBatchResults } from "../libs/jude0.libs.js";
 
 
@@ -38,7 +38,14 @@ export const createProblem = async (req, res) => {
                 const results = await pollBatchResults(tokens);
 
                 for(let i = 0; i < results.lenght; i++){
+                    
                     const result = results[i];
+                    console.log("Result___ID:", results[i]);
+
+                    console.log(
+                        `Testcase ${i + 1} and language ${language} ------ result ${JSON.stringify(result.status.description)}`
+                    );
+                    
 
                     if(result.status.id !== 3){
                         return res.status(400).json({
@@ -48,13 +55,33 @@ export const createProblem = async (req, res) => {
                 }
 
                 const newProblem = awaiat.db.problem.create({
-                   data:{title, description, difficulty, tags, examples, constraints, testcases, condeSnippets, referenceSolutions, userId: req.user.id},
+                   data:{
+                    title, 
+                    description, 
+                    difficulty, 
+                    tags, 
+                    examples, 
+                    constraints, 
+                    testcases, 
+                    condeSnippets, 
+                    referenceSolutions, 
+                    userId: req.user.id
+                },
                    
                 })
-                return res.statud(201).json(newProblem);
+                return res.status(201).json({
+                    sucess: true,
+                    message: "Message created Successfully",
+                    problem: newProblem
+                });
                 
             }
         } catch (error) {
+            console.log("Error in create a Problem",error);
+
+            return res.status(500).json({
+                error: "Error while creating a Problem"
+            })
             
         }
     }
