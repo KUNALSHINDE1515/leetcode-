@@ -1,5 +1,5 @@
 import db from "../libs/db.js";
-import { pollBatchResults } from "../libs/jude0.libs.js";
+import { getJudge0LanguageId, pollBatchResults, submitBatch } from "../libs/jude0.libs.js";
 
 
 export const createProblem = async (req, res) => {
@@ -54,7 +54,7 @@ export const createProblem = async (req, res) => {
                     }
                 }
 
-                const newProblem = awaiat.db.problem.create({
+                const newProblem = await db.problem.create({
                    data:{
                     title, 
                     description, 
@@ -65,7 +65,7 @@ export const createProblem = async (req, res) => {
                     testcases, 
                     condeSnippets, 
                     referenceSolutions, 
-                    userId: req.user.id
+                    userid: req.user.id
                 },
                    
                 })
