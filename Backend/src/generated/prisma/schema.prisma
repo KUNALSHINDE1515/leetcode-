@@ -9,34 +9,18 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
+  id        String   @id @default(uuid())
   name      String
-  email     String    @unique
+  email     String   @unique
   password  String
   image     String?
-  role      UserRole  @default(USER)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  Problem   Problem[]
-}
+  role      UserRole @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-model Problem {
-  id                 String     @id @default(uuid())
-  title              String
-  description        String
-  difficulty         Difficulty
-  tags               String[]
-  userid             String
-  examples           Json
-  constraints        String
-  hints              String?
-  editorial          String?
-  testcases          Json
-  condeSnippets      Json
-  referenceSolutions Json
-  createdAt          DateTime   @default(now())
-  updatedAt          DateTime   @updatedAt
-  User               User       @relation(fields: [userid], references: [id], onDelete: Cascade)
+  Problem       Problem[]
+  submission    Submission[]
+  problemSolved ProblemSolved[]
 }
 
 enum UserRole {
@@ -48,4 +32,82 @@ enum Difficulty {
   EASY
   MEDIUM
   HARD
+}
+
+model Problem {
+  id                 String          @id @default(uuid())
+  title              String
+  description        String
+  difficulty         Difficulty
+  tags               String[]
+  userId             String
+  examples           Json
+  constraints        String
+  hints              String?
+  editorial          String?
+  testcases          Json
+  condeSnippets      Json
+  referenceSolutions Json
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  User               User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  submission         Submission[]
+  solvedBy           ProblemSolved[]
+}
+
+model Submission {
+  id            String  @id @default(uuid())
+  userId        String
+  problemId     String
+  sourceCode    Json
+  language      String
+  stdin         String?
+  stdout        String?
+  stderr        String?
+  compileOutput String?
+  status        String // Accepted , Wrong Answer
+  memory        String?
+  time          String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  User    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problem Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  testCases TestCaseResult[]
+}
+
+model TestCaseResult {
+  id            String  @id @default(uuid())
+  submissionId  String
+  testCase      Int
+  passsed       Boolean
+  stdout        String?
+  expected      String
+  stderr        String?
+  compileOutput String?
+  statud        String
+  memory        String?
+  time          String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  submission Submission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  @@index([submissionId])
+}
+
+model ProblemSolved {
+  id        String   @id @default(uuid())
+  userId    String
+  problemId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  User    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problem Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, problemId])
 }

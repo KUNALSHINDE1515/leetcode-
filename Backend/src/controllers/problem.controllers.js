@@ -65,7 +65,7 @@ export const createProblem = async (req, res) => {
                     testcases, 
                     condeSnippets, 
                     referenceSolutions, 
-                    userid: req.user.id
+                    userId: req.user.id
                 },
                    
                 })
