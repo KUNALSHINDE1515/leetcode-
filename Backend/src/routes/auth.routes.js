@@ -9,3 +9,6 @@ authRouters.post('/logout',authmiddleware,logout);
 authRouters.get('/check',authmiddleware,check);
 
 export default authRouters;
+
+
+

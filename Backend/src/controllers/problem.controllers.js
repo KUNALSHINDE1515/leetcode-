@@ -40,7 +40,7 @@ export const createProblem = async (req, res) => {
                 for(let i = 0; i < results.lenght; i++){
                     
                     const result = results[i];
-                    console.log("Result___ID:", results[i]);
+                    console.log("Results:",result);
 
                     console.log(
                         `Testcase ${i + 1} and language ${language} ------ result ${JSON.stringify(result.status.description)}`
@@ -89,15 +89,99 @@ export const createProblem = async (req, res) => {
     //  loop through each referencd solution in different languages
 
 
+export const getAllProblem = async (req, res) => {
+    try {
+        const problem = await db.problem.findMany();
 
+        if (!problem) {
+            return res.status(404).json({
+                error: "No Problem Found"
+            })
+        }
 
-export const getAllProblem = async (req, res) => {}
+        res.status(200).json({
+            sucess: true,
+            message : "Message Fetched Successfully",
+            problem
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            error:"Error While Fetching the Problems"
+        })
+        
+    }
+}
 
-export const getProblem = async (req, res) => {}
+export const getProblem = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const problem = await db.problem.findUnique({
+            where:{
+                id
+            }
+        })
+        
+        if (!problem) {
+            return res.status(404).json({
+                error: "Problem not found."
+            })
+        }
+        return res.status(201).json({
+            sucess:true,
+            message:"Message Created Successfully",
+            problem
+        });
+    } catch (error) {
+        console.log("Error in get Problem:",error);
+        return res.status(500).json({
+            error: "Error While Fetching Problem By Id"
+        })
+        
+    }
+}
 
-export const updateProblem = async (req, res) => {}
+// Implement by your self 
+export const updateProblem = async (req, res) => {
+    // id
+    // id se problem find kiya (conditon check)
+    // bakki kam same hai
+    // intade of create we are use update
 
-export const deleteProblem = async (req, res) => {}
+}
 
-export const getSolvedProblems = async (req, res) => {}
+export const deleteProblem = async (req, res) => {
+  try {
+      const {id} = req.params;
+
+    const problem = await db.problem.findUnique({where:{id}});
+
+    if (!problem) {
+        return res.status(404).json({
+            error:"Problem not found"
+        })
+  
+    }
+    await db.problem.delete({where:{id}});
+
+    return res.status(200).json({
+      sucess: true,
+      message: "Problem deleted Successfully"
+    })
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+        error: "Error While deleting Problem"
+    })
+    
+  }
+
+}
+export const getSolvedProblems = async (req, res) => {
+
+    
+    
+    
+}
 

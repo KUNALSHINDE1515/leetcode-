@@ -990,11 +990,11 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    problems: number
+    Problem: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    problems?: boolean | UserCountOutputTypeCountProblemsArgs
+    Problem?: boolean | UserCountOutputTypeCountProblemArgs
   }
 
   // Custom InputTypes
@@ -1011,7 +1011,7 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountProblemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountProblemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProblemWhereInput
   }
 
@@ -1208,7 +1208,7 @@ export namespace Prisma {
     role?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    problems?: boolean | User$problemsArgs<ExtArgs>
+    Problem?: boolean | User$ProblemArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1247,7 +1247,7 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "image" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    problems?: boolean | User$problemsArgs<ExtArgs>
+    Problem?: boolean | User$ProblemArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1256,7 +1256,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      problems: Prisma.$ProblemPayload<ExtArgs>[]
+      Problem: Prisma.$ProblemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1661,7 +1661,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    problems<T extends User$problemsArgs<ExtArgs> = {}>(args?: Subset<T, User$problemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProblemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Problem<T extends User$ProblemArgs<ExtArgs> = {}>(args?: Subset<T, User$ProblemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProblemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2087,9 +2087,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.problems
+   * User.Problem
    */
-  export type User$problemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$ProblemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Problem
      */
@@ -2353,7 +2353,7 @@ export namespace Prisma {
     referenceSolutions?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["problem"]>
 
   export type ProblemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2372,7 +2372,7 @@ export namespace Prisma {
     referenceSolutions?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["problem"]>
 
   export type ProblemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2391,7 +2391,7 @@ export namespace Prisma {
     referenceSolutions?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["problem"]>
 
   export type ProblemSelectScalar = {
@@ -2414,19 +2414,19 @@ export namespace Prisma {
 
   export type ProblemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "difficulty" | "tags" | "userid" | "examples" | "constraints" | "hints" | "editorial" | "testcases" | "condeSnippets" | "referenceSolutions" | "createdAt" | "updatedAt", ExtArgs["result"]["problem"]>
   export type ProblemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type ProblemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type ProblemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $ProblemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Problem"
     objects: {
-      user: Prisma.$UserPayload<ExtArgs>
+      User: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2838,7 +2838,7 @@ export namespace Prisma {
    */
   export interface Prisma__ProblemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3490,7 +3490,7 @@ export namespace Prisma {
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    problems?: ProblemListRelationFilter
+    Problem?: ProblemListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -3502,7 +3502,7 @@ export namespace Prisma {
     role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    problems?: ProblemOrderByRelationAggregateInput
+    Problem?: ProblemOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3517,7 +3517,7 @@ export namespace Prisma {
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    problems?: ProblemListRelationFilter
+    Problem?: ProblemListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -3567,7 +3567,7 @@ export namespace Prisma {
     referenceSolutions?: JsonFilter<"Problem">
     createdAt?: DateTimeFilter<"Problem"> | Date | string
     updatedAt?: DateTimeFilter<"Problem"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type ProblemOrderByWithRelationInput = {
@@ -3586,7 +3586,7 @@ export namespace Prisma {
     referenceSolutions?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
+    User?: UserOrderByWithRelationInput
   }
 
   export type ProblemWhereUniqueInput = Prisma.AtLeast<{
@@ -3608,7 +3608,7 @@ export namespace Prisma {
     referenceSolutions?: JsonFilter<"Problem">
     createdAt?: DateTimeFilter<"Problem"> | Date | string
     updatedAt?: DateTimeFilter<"Problem"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type ProblemOrderByWithAggregationInput = {
@@ -3662,7 +3662,7 @@ export namespace Prisma {
     role?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
-    problems?: ProblemCreateNestedManyWithoutUserInput
+    Problem?: ProblemCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -3674,7 +3674,7 @@ export namespace Prisma {
     role?: $Enums.UserRole
     createdAt?: Date | string
     updatedAt?: Date | string
-    problems?: ProblemUncheckedCreateNestedManyWithoutUserInput
+    Problem?: ProblemUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -3686,7 +3686,7 @@ export namespace Prisma {
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    problems?: ProblemUpdateManyWithoutUserNestedInput
+    Problem?: ProblemUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -3698,7 +3698,7 @@ export namespace Prisma {
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    problems?: ProblemUncheckedUpdateManyWithoutUserNestedInput
+    Problem?: ProblemUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3749,7 +3749,7 @@ export namespace Prisma {
     referenceSolutions: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutProblemsInput
+    User: UserCreateNestedOneWithoutProblemInput
   }
 
   export type ProblemUncheckedCreateInput = {
@@ -3785,7 +3785,7 @@ export namespace Prisma {
     referenceSolutions?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutProblemsNestedInput
+    User?: UserUpdateOneRequiredWithoutProblemNestedInput
   }
 
   export type ProblemUncheckedUpdateInput = {
@@ -4200,9 +4200,9 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type UserCreateNestedOneWithoutProblemsInput = {
-    create?: XOR<UserCreateWithoutProblemsInput, UserUncheckedCreateWithoutProblemsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProblemsInput
+  export type UserCreateNestedOneWithoutProblemInput = {
+    create?: XOR<UserCreateWithoutProblemInput, UserUncheckedCreateWithoutProblemInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProblemInput
     connect?: UserWhereUniqueInput
   }
 
@@ -4215,12 +4215,12 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type UserUpdateOneRequiredWithoutProblemsNestedInput = {
-    create?: XOR<UserCreateWithoutProblemsInput, UserUncheckedCreateWithoutProblemsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProblemsInput
-    upsert?: UserUpsertWithoutProblemsInput
+  export type UserUpdateOneRequiredWithoutProblemNestedInput = {
+    create?: XOR<UserCreateWithoutProblemInput, UserUncheckedCreateWithoutProblemInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProblemInput
+    upsert?: UserUpsertWithoutProblemInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProblemsInput, UserUpdateWithoutProblemsInput>, UserUncheckedUpdateWithoutProblemsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProblemInput, UserUpdateWithoutProblemInput>, UserUncheckedUpdateWithoutProblemInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4470,7 +4470,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Problem"> | Date | string
   }
 
-  export type UserCreateWithoutProblemsInput = {
+  export type UserCreateWithoutProblemInput = {
     id?: string
     name: string
     email: string
@@ -4481,7 +4481,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type UserUncheckedCreateWithoutProblemsInput = {
+  export type UserUncheckedCreateWithoutProblemInput = {
     id?: string
     name: string
     email: string
@@ -4492,23 +4492,23 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type UserCreateOrConnectWithoutProblemsInput = {
+  export type UserCreateOrConnectWithoutProblemInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutProblemsInput, UserUncheckedCreateWithoutProblemsInput>
+    create: XOR<UserCreateWithoutProblemInput, UserUncheckedCreateWithoutProblemInput>
   }
 
-  export type UserUpsertWithoutProblemsInput = {
-    update: XOR<UserUpdateWithoutProblemsInput, UserUncheckedUpdateWithoutProblemsInput>
-    create: XOR<UserCreateWithoutProblemsInput, UserUncheckedCreateWithoutProblemsInput>
+  export type UserUpsertWithoutProblemInput = {
+    update: XOR<UserUpdateWithoutProblemInput, UserUncheckedUpdateWithoutProblemInput>
+    create: XOR<UserCreateWithoutProblemInput, UserUncheckedCreateWithoutProblemInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutProblemsInput = {
+  export type UserUpdateToOneWithWhereWithoutProblemInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutProblemsInput, UserUncheckedUpdateWithoutProblemsInput>
+    data: XOR<UserUpdateWithoutProblemInput, UserUncheckedUpdateWithoutProblemInput>
   }
 
-  export type UserUpdateWithoutProblemsInput = {
+  export type UserUpdateWithoutProblemInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -4519,7 +4519,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserUncheckedUpdateWithoutProblemsInput = {
+  export type UserUncheckedUpdateWithoutProblemInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
